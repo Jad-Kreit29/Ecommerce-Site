@@ -19,7 +19,6 @@ const ReviewOrderPage = () => {
   }
 
   const handleConfirmOrder = () => {
-    // In a real application, this is where you'd send the final order to the backend.
     console.log('Final Order Confirmed:', {
       shippingInfo,
       paymentMethod,
@@ -29,9 +28,9 @@ const ReviewOrderPage = () => {
     });
 
     // Simulate order success and clear cart
-    alert('Order Placed Successfully! Thank you for your purchase.');
-    setCartItems([]); // Clear the cart after successful order
-    navigate('/'); // Redirect to home page or an order confirmation page
+    alert('Order Placed Successfully!');
+    setCartItems([]);
+    navigate('/survey');
   };
 
   return (
