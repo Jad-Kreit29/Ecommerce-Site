@@ -6,7 +6,8 @@ import { CartProvider } from './context/CartContext'; // Assuming CartContext.js
 import Navbar from './components/Navbar';           // Assuming Navbar.jsx is in src/components/
 import HomePage from './pages/HomePage';             // Assuming HomePage.jsx is in src/pages/
 import ShopPage from './pages/ShopPage';             // Assuming ShopPage.jsx is in src/pages/
-import CartPage from './pages/CartPage';
+import CartPage from './pages/CartPage';             // Assuming CartPage.jsx is in src/pages/
+import CheckoutPage from './pages/CheckoutPage';     // Import the new CheckoutPage
 
 const App = () => {
   return (
@@ -18,7 +19,8 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/cart" element={<CartPage />} />
-            {/* Add other routes here, e.g., for checkout, product details */}
+            <Route path="/checkout" element={<CheckoutPage />} /> {/* New Checkout Route */}
+            {/* Add other routes here, e.g., for product details */}
           </Routes>
         </main>
       </CartProvider>

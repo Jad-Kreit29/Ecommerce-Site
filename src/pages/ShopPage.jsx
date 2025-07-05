@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { X } from 'lucide-react';
+import { X, Search } from 'lucide-react'; // Import Search icon
 import { productsData } from '../data/products';
 import Button from '../components/ui/Button';
 import Checkbox from '../components/ui/Checkbox';
@@ -9,6 +9,7 @@ import { Label } from '../components/ui/Label';
 const ShopPage = () => {
   const [products, setProducts] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState({});
+  const [searchTerm, setSearchTerm] = useState(''); // New state for search term
 
   useEffect(() => {
     setProducts(productsData);
@@ -17,6 +18,14 @@ const ShopPage = () => {
   const filteredProducts = useMemo(() => {
     let currentProducts = [...products];
 
+    // Filter by search term first
+    if (searchTerm) {
+      currentProducts = currentProducts.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    // Then apply category filters
     Object.keys(selectedFilters).forEach(filterCategory => {
       const selectedOptions = selectedFilters[filterCategory];
 
@@ -32,7 +41,7 @@ const ShopPage = () => {
       }
     });
     return currentProducts;
-  }, [products, selectedFilters]);
+  }, [products, selectedFilters, searchTerm]); // Add searchTerm to dependencies
 
   const handleFilterChange = (category, value) => {
     setSelectedFilters(prevFilters => {
@@ -95,6 +104,29 @@ const ShopPage = () => {
         {/* Filter Panel */}
         <div className="md:w-1/4 bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-semibold text-orange-800 mb-6">Filter By</h2>
+
+          {/* Search Bar */}
+          <div className="mb-6 pb-4 border-b border-dashed border-gray-200">
+            <h3 className="text-lg font-medium text-amber-700 mb-3">Search Products</h3>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search by name..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+              />
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                >
+                  <X size={18} />
+                </button>
+              )}
+            </div>
+          </div>
 
           {Object.keys(selectedFilters).length > 0 && (
             <div className="mb-6 pb-4 border-b border-dashed border-gray-200">

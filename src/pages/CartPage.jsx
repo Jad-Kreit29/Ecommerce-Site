@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import Button from '../components/ui/Button';
 import { CartContext } from '../context/CartContext';
 
 const CartPage = () => {
   const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const totalCartValue = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -74,7 +75,10 @@ const CartPage = () => {
             <span className="text-3xl font-extrabold text-amber-700">${totalCartValue.toFixed(2)}</span>
           </div>
           <div className="flex justify-end mt-6">
-            <Button className="bg-green-600 hover:bg-green-700 text-white text-lg px-8 py-3 rounded-md">
+            <Button
+              onClick={() => navigate('/checkout')} // Navigate to checkout page
+              className="bg-green-600 hover:bg-green-700 text-white text-lg px-8 py-3 rounded-md"
+            >
               Proceed to Checkout
             </Button>
           </div>
