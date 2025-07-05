@@ -33,8 +33,9 @@ const CartProvider = ({ children }) => {
     });
   };
 
+  // Export setCartItems for direct use in ReviewOrderPage
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, setCartItems }}>
       {children}
     </CartContext.Provider>
   );

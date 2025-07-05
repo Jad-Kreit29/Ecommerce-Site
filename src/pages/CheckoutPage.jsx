@@ -5,7 +5,7 @@ import Button from '../components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../components/ui/Card'; // Reusing Card components
 
 const CheckoutPage = () => {
-  const { cartItems, setCartItems } = useContext(CartContext); // Assuming setCartItems is available for clearing cart
+  const { cartItems } = useContext(CartContext); // No longer need setCartItems here
   const navigate = useNavigate();
 
   const totalCartValue = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -37,21 +37,18 @@ const CheckoutPage = () => {
     setCreditCardInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
   };
 
-  const handlePlaceOrder = (e) => {
+  const handleProceedToReview = (e) => {
     e.preventDefault();
-    // In a real application, you would send this data to a backend for processing
-    console.log('Placing order with:', {
-      shippingInfo,
-      paymentMethod,
-      creditCardInfo: paymentMethod === 'creditCard' ? creditCardInfo : null,
-      cartItems,
-      totalCartValue,
+    // Pass all order details to the review page via state
+    navigate('/review-order', {
+      state: {
+        cartItems,
+        shippingInfo,
+        paymentMethod,
+        creditCardInfo,
+        totalCartValue,
+      },
     });
-
-    // Simulate order success and clear cart
-    alert('Order Placed Successfully! Thank you for your purchase.'); // Using alert for simplicity as per instructions
-    setCartItems([]); // Clear the cart after successful order
-    navigate('/'); // Redirect to home page or an order confirmation page
   };
 
   return (
@@ -66,7 +63,7 @@ const CheckoutPage = () => {
           </Button>
         </div>
       ) : (
-        <form onSubmit={handlePlaceOrder} className="flex flex-col lg:flex-row gap-8">
+        <form onSubmit={handleProceedToReview} className="flex flex-col lg:flex-row gap-8">
           {/* Shipping Information */}
           <Card className="flex-1 p-6 shadow-lg rounded-lg">
             <CardHeader className="mb-6">
@@ -144,7 +141,7 @@ const CheckoutPage = () => {
                   value={shippingInfo.postalCode}
                   onChange={handleShippingChange}
                   className="w-full p-2 border border-gray-300 rounded-md focus:ring-amber-500 focus:border-amber-500"
-                  pattern="[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d" // Canadian postal code pattern
+                  pattern="[A-Za-z][0-9][A-Za-z]\s?[0-9][A-Za-z][0-9]" // Corrected Canadian postal code pattern
                   title="Enter a valid Canadian postal code (e.g., A1A 1A1 or A1A1A1)"
                   required
                 />
@@ -286,7 +283,7 @@ const CheckoutPage = () => {
               </CardContent>
               <CardFooter className="mt-6">
                 <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white text-lg px-8 py-3 rounded-md">
-                  Place Order
+                  Proceed to Review
                 </Button>
               </CardFooter>
             </Card>

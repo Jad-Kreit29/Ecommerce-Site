@@ -7,7 +7,8 @@ import Navbar from './components/Navbar';           // Assuming Navbar.jsx is in
 import HomePage from './pages/HomePage';             // Assuming HomePage.jsx is in src/pages/
 import ShopPage from './pages/ShopPage';             // Assuming ShopPage.jsx is in src/pages/
 import CartPage from './pages/CartPage';             // Assuming CartPage.jsx is in src/pages/
-import CheckoutPage from './pages/CheckoutPage';     // Import the new CheckoutPage
+import CheckoutPage from './pages/CheckoutPage';     // Import the CheckoutPage
+import ReviewOrderPage from './pages/ReviewOrderPage'; // Import the new ReviewOrderPage
 
 const App = () => {
   return (
@@ -19,7 +20,8 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/cart" element={<CartPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} /> {/* New Checkout Route */}
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/review-order" element={<ReviewOrderPage />} /> {/* New Review Order Route */}
             {/* Add other routes here, e.g., for product details */}
           </Routes>
         </main>
