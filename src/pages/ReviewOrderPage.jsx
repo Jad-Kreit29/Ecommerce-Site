@@ -1,13 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react'; // Import useState
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from '../components/ui/Card';
 import { CartContext } from '../context/CartContext';
+import OrderConfirmationModal from '../components/OrderConfirmationModal'; // Import the new modal
 
 const ReviewOrderPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { setCartItems } = useContext(CartContext); // Assuming setCartItems is available for clearing cart
+  const { setCartItems } = useContext(CartContext);
+
+  // State to control modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Retrieve order details passed from CheckoutPage
   const { cartItems, shippingInfo, paymentMethod, creditCardInfo, totalCartValue } = location.state || {};
@@ -19,6 +23,7 @@ const ReviewOrderPage = () => {
   }
 
   const handleConfirmOrder = () => {
+    // In a real application, this is where you'd send the final order to the backend.
     console.log('Final Order Confirmed:', {
       shippingInfo,
       paymentMethod,
@@ -27,10 +32,14 @@ const ReviewOrderPage = () => {
       totalCartValue,
     });
 
-    // Simulate order success and clear cart
-    alert('Order Placed Successfully!');
+    // Clear the cart after successful order
     setCartItems([]);
-    navigate('/survey');
+    setIsModalOpen(true); // Open the custom modal
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false); // Close the modal
+    navigate('/survey'); // Redirect to survey page after modal is closed
   };
 
   return (
@@ -100,6 +109,13 @@ const ReviewOrderPage = () => {
           </CardFooter>
         </div>
       </div>
+
+      {/* Render the custom confirmation modal */}
+      <OrderConfirmationModal
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        message="Your order has been placed successfully!"
+      />
     </div>
   );
 };

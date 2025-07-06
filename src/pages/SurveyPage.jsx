@@ -2,24 +2,31 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../components/ui/Card';
+import OrderConfirmationModal from '../components/OrderConfirmationModal'; // Import the custom modal
 
 const SurveyPage = () => {
   const navigate = useNavigate();
   const [satisfaction, setSatisfaction] = useState('');
-  const [howHeard, setHowHeard] = useState(''); // New state for 'how heard'
-  const [nextAnimal, setNextAnimal] = useState(''); // New state for 'next animal'
+  const [howHeard, setHowHeard] = useState('');
+  const [nextAnimal, setNextAnimal] = useState('');
   const [feedback, setFeedback] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false); // New state for modal visibility
 
   const handleSubmitSurvey = (e) => {
     e.preventDefault();
     console.log('Survey Submitted:', {
       satisfaction,
-      howHeard,      // Include in log
-      nextAnimal,    // Include in log
+      howHeard,
+      nextAnimal,
       feedback
     });
-    alert('Thank you for your feedback!'); // Using alert for simplicity
-    navigate('/'); // Redirect to home page after survey submission
+    // Open the custom modal instead of using alert
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false); // Close the modal
+    navigate('/'); // Redirect to home page after modal is closed
   };
 
   return (
@@ -33,6 +40,7 @@ const SurveyPage = () => {
         <CardContent>
           <form onSubmit={handleSubmitSurvey} className="space-y-6">
 
+            {/* New: How did you hear about us? */}
             <div>
               <label htmlFor="howHeard" className="block text-lg font-medium text-gray-700 mb-2">
                 How did you hear about ChocoZoo?
@@ -46,13 +54,14 @@ const SurveyPage = () => {
               >
                 <option value="">Select an option</option>
                 <option value="social-media">Social Media</option>
-                <option value="search-engine">Google Search</option>
+                <option value="search-engine">Search Engine (Google, Bing, etc.)</option>
                 <option value="friend-family">Friend/Family Recommendation</option>
                 <option value="advertisement">Advertisement</option>
                 <option value="other">Other</option>
               </select>
             </div>
 
+            {/* New: What animal would you like to see next? */}
             <div>
               <label htmlFor="nextAnimal" className="block text-lg font-medium text-gray-700 mb-2">
                 What chocolate animal would you like to see us create next?
@@ -67,6 +76,7 @@ const SurveyPage = () => {
               />
             </div>
 
+            {/* Existing: Additional feedback */}
             <div>
               <label htmlFor="feedback" className="block text-lg font-medium text-gray-700 mb-2">
                 Any additional feedback or suggestions?
@@ -89,6 +99,13 @@ const SurveyPage = () => {
           </form>
         </CardContent>
       </Card>
+
+      {/* Render the custom confirmation modal for survey feedback */}
+      <OrderConfirmationModal
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        message="Thank you for your feedback!"
+      />
     </div>
   );
 };
