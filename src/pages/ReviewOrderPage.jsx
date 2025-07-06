@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Button } from '@/components/ui/button'
+import Button from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from '@/components/ui/card'
 import { CartContext } from '../context/CartContext'
 import OrderConfirmationModal from '../components/OrderConfirmationModal'
