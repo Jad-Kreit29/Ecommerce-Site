@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CartContext } from '../context/CartContext'
-import Button from '@/components/ui/button'
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card' // Reusing Card components
+import { Button } from '@/components/ui/button'
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card'
 
 const CheckoutPage = () => {
   const { cartItems } = useContext(CartContext); // No longer need setCartItems here

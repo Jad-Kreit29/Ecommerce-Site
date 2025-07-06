@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { X, Search } from 'lucide-react'
 import { productsData } from '../data/products'
-import Button from '@/components/ui/button'
-import Checkbox from '@/components/ui/checkbox'
-import Label from '@/components/ui/label'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Label } from '@/components/ui/label'
 import ProductList from '../components/ProductList'
 
 const ShopPage = () => {
