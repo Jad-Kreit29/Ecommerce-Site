@@ -1,5 +1,5 @@
-import React from 'react';
-import Button from './ui/Button'; // Assuming Button component is available
+import React from 'react'
+import { Button } from '@/components/ui/button'
 
 /**
  * OrderConfirmationModal component.

@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { ShoppingCart, Home, Store } from 'lucide-react';
-import { CartContext } from '../context/CartContext';
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { ShoppingCart, Home, Store } from 'lucide-react'
+import { CartContext } from '../context/CartContext'
 
 const Navbar = () => {
   const { cartItems } = useContext(CartContext);
