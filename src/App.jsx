@@ -1,15 +1,15 @@
 import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom'
 
-import { CartProvider } from './context/CartContext';
-import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
-import ShopPage from './pages/ShopPage';
-import CartPage from './pages/CartPage';
-import CheckoutPage from './pages/CheckoutPage';
-import ReviewOrderPage from './pages/ReviewOrderPage';
-import SurveyPage from './pages/SurveyPage';
-import Stepper from './components/Stepper'; // Import your custom Stepper component
+import { CartProvider } from './context/CartContext'
+import Navbar from './components/Navbar'
+import HomePage from './pages/HomePage'
+import ShopPage from './pages/ShopPage'
+import CartPage from './pages/CartPage'
+import CheckoutPage from './pages/CheckoutPage'
+import ReviewOrderPage from './pages/ReviewOrderPage'
+import SurveyPage from './pages/SurveyPage'
+import Stepper from './components/Stepper'
 
 const App = () => {
   // useLocation is correctly used here because App is now wrapped by Router in index.jsx

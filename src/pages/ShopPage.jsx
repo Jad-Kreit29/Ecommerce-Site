@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { X, Search } from 'lucide-react'; // Import Search icon
-import { productsData } from '../data/products';
-import Button from '../components/ui/Button';
-import Checkbox from '../components/ui/Checkbox';
-import ProductList from '../components/ProductList';
-import { Label } from '../components/ui/Label';
+import React, { useState, useEffect, useMemo } from 'react'
+import { X, Search } from 'lucide-react'
+import { productsData } from '../data/products'
+import Button from '@/components/ui/button'
+import Checkbox from '@/components/ui/checkbox'
+import Label from '@/components/ui/label'
+import ProductList from '../components/ProductList'
 
 const ShopPage = () => {
   const [products, setProducts] = useState([]);

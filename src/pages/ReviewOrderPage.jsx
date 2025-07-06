@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react'; // Import useState
-import { useLocation, useNavigate } from 'react-router-dom';
-import Button from '../components/ui/Button';
-import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from '../components/ui/Card';
-import { CartContext } from '../context/CartContext';
-import OrderConfirmationModal from '../components/OrderConfirmationModal'; // Import the new modal
+import React, { useContext, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import Button from '@/components/ui/button'
+import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from '@/components/ui/card'
+import { CartContext } from '../context/CartContext'
+import OrderConfirmationModal from '../components/OrderConfirmationModal'
 
 const ReviewOrderPage = () => {
   const location = useLocation();

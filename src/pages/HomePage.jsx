@@ -1,6 +1,6 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Button from '../components/ui/Button';
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import Button from '@/components/ui/button'
 
 const HomePage = () => {
   const navigate = useNavigate();
