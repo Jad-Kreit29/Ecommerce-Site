@@ -1,14 +1,21 @@
-import React, { useContext } from 'react'
-import Button from '@/components/ui/button'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
-import { CartContext } from '../context/CartContext'
+// src/components/ProductCard.jsx
+
+import React, { useContext } from 'react';
+import Button from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { CartContext } from '../context/CartContext';
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useContext(CartContext);
 
   return (
-
-    <Card className="flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+    <Card className="relative flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+      {/* Sale Badge */}
+      {product.isOnSale && (
+        <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-md">
+          SALE!
+        </span>
+      )}
 
       {/* Title */}
       <CardHeader className="p-0">
@@ -22,17 +29,25 @@ const ProductCard = ({ product }) => {
 
       {/* Subtitle */}
       <CardContent className="p-4 flex-grow">
-
         <CardTitle className="text-xl font-semibold text-orange-900 mb-2">{product.name}</CardTitle>
-          <CardDescription className="text-gray-600 mb-3">
-            <span className='font-bold'>Type: </span> {product.chocolateType} | <span className='font-bold'>Size: </span> {product.size}
-          </CardDescription>
-        <p className="text-2xl font-bold text-amber-700">${product.price.toFixed(2)}</p>
-
+        <CardDescription className="text-gray-600 mb-3">
+          <span className='font-bold'>Type: </span> {product.chocolateType} | <span className='font-bold'>Size: </span> {product.size}
+        </CardDescription>
+        
+        {/* Price Display */}
+        <div className="flex items-baseline gap-2">
+          {product.isOnSale ? (
+            <>
+              <span className="text-xl font-bold text-gray-500 line-through">${product.price.toFixed(2)}</span>
+              <span className="text-2xl font-bold text-red-600">${product.salePrice.toFixed(2)}</span>
+            </>
+          ) : (
+            <p className="text-2xl font-bold text-amber-700">${product.price.toFixed(2)}</p>
+          )}
+        </div>
       </CardContent>
 
       <CardFooter className="p-4 pt-0">
-
         {/* Add to Cart Button */}
         <Button
           onClick={() => addToCart(product)}
@@ -40,11 +55,8 @@ const ProductCard = ({ product }) => {
         >
           Add to Cart
         </Button>
-        
       </CardFooter>
-
     </Card>
-
   );
 };
 

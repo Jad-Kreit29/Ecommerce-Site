@@ -1,3 +1,5 @@
+// src/data/products.js
+
 export const productsData = [
   {
     id: 'choc001',
@@ -12,6 +14,8 @@ export const productsData = [
     occasion: ['Easter', 'Birthday', 'Everyday Treat'],
     size: 'Medium',
     packaging: 'Single Animal',
+    isOnSale: true,
+    salePrice: 9.99,
   },
   {
     id: 'choc002',
@@ -27,6 +31,8 @@ export const productsData = [
     occasion: ['Birthday', 'Just Because'],
     size: 'Large',
     packaging: 'Gift Box',
+    isOnSale: true,
+    salePrice: 14.50,
   },
   {
     id: 'choc003',
@@ -41,6 +47,8 @@ export const productsData = [
     occasion: ['Baby Shower', 'Everyday Treat'],
     size: 'Small',
     packaging: 'Single Animal',
+    isOnSale: true,
+    salePrice: 7.50,
   },
   {
     id: 'choc004',

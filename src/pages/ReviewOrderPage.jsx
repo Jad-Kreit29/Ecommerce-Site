@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import Button from '@/components/ui/button'
-import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from '@/components/ui/card'
-import { CartContext } from '../context/CartContext'
-import OrderConfirmationModal from '../components/OrderConfirmationModal'
+// src/pages/ReviewOrderPage.jsx
+
+import React, { useContext, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Button from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from '@/components/ui/card';
+import { CartContext } from '../context/CartContext';
+import OrderConfirmationModal from '../components/OrderConfirmationModal';
 
 const ReviewOrderPage = () => {
   const location = useLocation();
@@ -14,13 +16,20 @@ const ReviewOrderPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Retrieve order details passed from CheckoutPage
-  const { cartItems, shippingInfo, paymentMethod, creditCardInfo, totalCartValue } = location.state || {};
+  const { cartItems, shippingInfo, paymentMethod, creditCardInfo } = location.state || {};
 
   // Redirect if no order details are found (e.g., direct access to this URL)
   if (!cartItems || cartItems.length === 0 || !shippingInfo) {
     navigate('/cart'); // Redirect to cart if no order details
     return null;
   }
+
+  // Calculate total cart value for review, considering sale prices
+  const totalCartValue = cartItems.reduce((sum, item) => {
+    // If the item is on sale, use its salePrice for calculation, otherwise use its regular price
+    const priceToUse = item.isOnSale && item.salePrice !== undefined ? item.salePrice : item.price;
+    return sum + priceToUse * item.quantity;
+  }, 0);
 
   const handleConfirmOrder = () => {
     // In a real application, this is where you'd send the final order to the backend.
@@ -55,12 +64,33 @@ const ReviewOrderPage = () => {
           <CardContent>
             <h3 className="text-xl font-semibold text-amber-700 mb-4">Items:</h3>
             <ul className="divide-y divide-gray-200 mb-4">
-              {cartItems.map((item) => (
-                <li key={item.id} className="flex justify-between items-center py-2">
-                  <span className="text-gray-800">{item.name} (x{item.quantity})</span>
-                  <span className="font-medium">${(item.price * item.quantity).toFixed(2)}</span>
-                </li>
-              ))}
+              {cartItems.map((item) => {
+                // Calculate the original total price for the quantity
+                const originalItemTotalPrice = item.price * item.quantity;
+                // Calculate the price to display (sale price if applicable, otherwise original price)
+                const priceToDisplay = item.isOnSale && item.salePrice !== undefined ? item.salePrice : item.price;
+                // Calculate the total price based on the price to display
+                const currentItemTotalPrice = priceToDisplay * item.quantity;
+
+                return (
+                  <li key={item.id} className="flex justify-between items-center py-2">
+                    <span className="text-gray-800">{item.name} (x{item.quantity})</span>
+                    <span className="font-medium">
+                      {item.isOnSale && item.salePrice !== undefined ? (
+                        <>
+                          {/* Display original total price crossed out */}
+                          <span className="line-through mr-1 text-gray-500">${originalItemTotalPrice.toFixed(2)}</span>
+                          {/* Display current total price (sale price * quantity) */}
+                          <span className="text-red-600 font-bold">${currentItemTotalPrice.toFixed(2)}</span>
+                        </>
+                      ) : (
+                        // Display regular total price if not on sale
+                        `$${currentItemTotalPrice.toFixed(2)}`
+                      )}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
             <div className="flex justify-between font-bold text-xl text-orange-900 border-t pt-3 mt-3">
               <span>Total:</span>

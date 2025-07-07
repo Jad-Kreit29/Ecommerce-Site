@@ -1,14 +1,21 @@
-import React, { useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { CartContext } from '../context/CartContext'
-import Button from '@/components/ui/button'
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card'
+// src/pages/CheckoutPage.jsx
+
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
+import Button from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 
 const CheckoutPage = () => {
-  const { cartItems } = useContext(CartContext); // No longer need setCartItems here
+  const { cartItems } = useContext(CartContext);
   const navigate = useNavigate();
 
-  const totalCartValue = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  // Calculate total cart value, considering sale prices
+  const totalCartValue = cartItems.reduce((sum, item) => {
+    // If the item is on sale, use its salePrice for calculation, otherwise use its regular price
+    const priceToUse = item.isOnSale && item.salePrice !== undefined ? item.salePrice : item.price;
+    return sum + priceToUse * item.quantity;
+  }, 0);
 
   // State for shipping information
   const [shippingInfo, setShippingInfo] = useState({
@@ -46,7 +53,7 @@ const CheckoutPage = () => {
         shippingInfo,
         paymentMethod,
         creditCardInfo,
-        totalCartValue,
+        totalCartValue, // Ensure the correct totalCartValue is passed
       },
     });
   };

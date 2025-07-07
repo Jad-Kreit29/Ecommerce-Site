@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useMemo } from 'react'
-import { X, Search } from 'lucide-react'
-import { productsData } from '../data/products'
-import Button from '@/components/ui/button'
-import Checkbox from '@/components/ui/checkbox'
-import { Label } from '@/components/ui/label'
-import ProductList from '../components/ProductList'
+// src/pages/ShopPage.jsx
+
+import React, { useState, useEffect, useMemo } from 'react';
+import { X, Search } from 'lucide-react';
+import { productsData } from '../data/products';
+import Button from '@/components/ui/button';
+import Checkbox from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import ProductList from '../components/ProductList';
 
 const ShopPage = () => {
   const [products, setProducts] = useState([]);
@@ -31,6 +33,12 @@ const ShopPage = () => {
 
       if (selectedOptions && selectedOptions.length > 0) {
         currentProducts = currentProducts.filter(product => {
+          // Special handling for 'isOnSale' filter
+          if (filterCategory === 'isOnSale') {
+            // If 'On Sale' is selected, only show products where isOnSale is true
+            return selectedOptions.includes('On Sale') ? product.isOnSale : true;
+          }
+
           const productValue = product[filterCategory];
 
           if (Array.isArray(productValue)) {
@@ -41,7 +49,7 @@ const ShopPage = () => {
       }
     });
     return currentProducts;
-  }, [products, selectedFilters, searchTerm]); // Add searchTerm to dependencies
+  }, [products, selectedFilters, searchTerm]);
 
   const handleFilterChange = (category, value) => {
     setSelectedFilters(prevFilters => {
@@ -71,6 +79,11 @@ const ShopPage = () => {
   };
 
   const getUniqueOptions = (category) => {
+    // Special handling for 'isOnSale' category: it only has one option "On Sale"
+    if (category === 'isOnSale') {
+      return ['On Sale'];
+    }
+
     if (!products.length) return [];
     const options = new Set();
     products.forEach(product => {
@@ -91,7 +104,8 @@ const ShopPage = () => {
     'Animal Sub-Type': 'animalSubType',
     'Chocolate Type': 'chocolateType',
     'Dietary Needs': 'dietary',
-    'Size': 'size'
+    'Size': 'size',
+    'Sale Items': 'isOnSale' // Add 'Sale Items' as a filter category
   };
 
   return (
@@ -99,12 +113,12 @@ const ShopPage = () => {
 
       <h1 className="text-4xl font-bold text-center text-orange-900 mb-4">Our Chocolate Animals</h1>
       <p className='text-lg text-center mb-8'>Browse our collection of cute chocolate animals to match your personality!</p>
-      
+
       {/* Split columns between filter section and product listings */}
       <div className="flex flex-col md:flex-row gap-8">
 
         {/* Filter Panel */}
-        <div className="h-295 md:w-1/4 bg-white p-6 rounded-lg shadow-md">
+        <div className="md:w-1/4 bg-white p-6 rounded-lg shadow-md h-fit sticky top-24"> {/* Added h-fit and sticky for better filter panel display */}
           <h2 className="text-2xl font-semibold text-orange-800 mb-6">Filter By</h2>
 
           {/* Search Bar */}
@@ -130,7 +144,7 @@ const ShopPage = () => {
             </div>
           </div>
 
-          {/* Filter Logic */}
+          {/* Applied Filters Display and Clear Button */}
           {Object.keys(selectedFilters).length > 0 && (
             <div className="mb-6 pb-4 border-b border-dashed border-gray-200">
               <h3 className="text-lg font-medium text-amber-700 mb-3">Applied Filters</h3>
@@ -164,9 +178,7 @@ const ShopPage = () => {
               <h3 className="text-lg font-medium text-amber-700 mb-3">{displayName}</h3>
               <div className="flex flex-col gap-2">
                 {getUniqueOptions(propertyName).map(option => (
-                  <div key={option} className="flex items-center space-x-2"> 
-                  
-                  {/* Wrapper for Checkbox and Label */}
+                  <div key={option} className="flex items-center space-x-2">
                     <Checkbox
                       id={`${propertyName}-${option}`}
                       checked={selectedFilters[propertyName]?.includes(option) || false}
@@ -179,7 +191,6 @@ const ShopPage = () => {
                 ))}
               </div>
             </div>
-
           ))}
         </div>
 
