@@ -31,16 +31,21 @@ const SurveyPage = () => {
 
   return (
     <div className="container mx-auto p-4">
+
       <h1 className="text-4xl font-bold text-center text-orange-900 mb-8">Tell Us About Your Experience!</h1>
 
+      <p className='text-lg text-center mb-8'>We'd love to hear from you to better improve our offerings!</p>
+
       <Card className="p-6 shadow-lg rounded-lg max-w-2xl mx-auto">
-        <CardHeader className="mb-6">
+
+        <CardHeader>
           <CardTitle className="text-2xl font-semibold text-orange-800">Quick Survey</CardTitle>
         </CardHeader>
+
         <CardContent>
           <form onSubmit={handleSubmitSurvey} className="space-y-6">
 
-            {/* New: How did you hear about us? */}
+            {/* How did you hear about us? */}
             <div>
               <label htmlFor="howHeard" className="block text-lg font-medium text-gray-700 mb-2">
                 How did you hear about ChocoZoo?
@@ -61,7 +66,7 @@ const SurveyPage = () => {
               </select>
             </div>
 
-            {/* New: What animal would you like to see next? */}
+            {/* What animal would you like to see next? */}
             <div>
               <label htmlFor="nextAnimal" className="block text-lg font-medium text-gray-700 mb-2">
                 What chocolate animal would you like to see us create next?
@@ -76,7 +81,7 @@ const SurveyPage = () => {
               />
             </div>
 
-            {/* Existing: Additional feedback */}
+            {/* Additional feedback */}
             <div>
               <label htmlFor="feedback" className="block text-lg font-medium text-gray-700 mb-2">
                 Any additional feedback or suggestions?
