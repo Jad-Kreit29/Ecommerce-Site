@@ -53,18 +53,23 @@ const ReviewOrderPage = () => {
 
   return (
     <div className="container mx-auto p-4">
+
       <h1 className="text-4xl font-bold text-center text-orange-900 mb-8">Review Your Order</h1>
 
       <div className="flex flex-col lg:flex-row gap-8">
+
         {/* Order Summary */}
         <Card className="flex-1 p-6 shadow-lg rounded-lg">
-          <CardHeader className="mb-6">
+
+          <CardHeader>
             <CardTitle className="text-2xl font-semibold text-orange-800">Order Details</CardTitle>
           </CardHeader>
+
           <CardContent>
             <h3 className="text-xl font-semibold text-amber-700 mb-4">Items:</h3>
             <ul className="divide-y divide-gray-200 mb-4">
               {cartItems.map((item) => {
+
                 // Calculate the original total price for the quantity
                 const originalItemTotalPrice = item.price * item.quantity;
                 // Calculate the price to display (sale price if applicable, otherwise original price)
@@ -92,19 +97,24 @@ const ReviewOrderPage = () => {
                 );
               })}
             </ul>
+
             <div className="flex justify-between font-bold text-xl text-orange-900 border-t pt-3 mt-3">
               <span>Total:</span>
               <span>${totalCartValue.toFixed(2)} CAD</span>
             </div>
+            
           </CardContent>
         </Card>
 
         {/* Shipping & Payment Information */}
         <div className="flex-1 flex flex-col gap-8">
+
           <Card className="p-6 shadow-lg rounded-lg">
-            <CardHeader className="mb-6">
+
+            <CardHeader>
               <CardTitle className="text-2xl font-semibold text-orange-800">Shipping Information</CardTitle>
             </CardHeader>
+
             <CardContent className="space-y-2 text-gray-700">
               <p><strong>Name:</strong> {shippingInfo.fullName}</p>
               <p><strong>Address:</strong> {shippingInfo.address}</p>
@@ -115,9 +125,11 @@ const ReviewOrderPage = () => {
           </Card>
 
           <Card className="p-6 shadow-lg rounded-lg">
-            <CardHeader className="mb-6">
+
+            <CardHeader>
               <CardTitle className="text-2xl font-semibold text-orange-800">Payment Method</CardTitle>
             </CardHeader>
+
             <CardContent className="space-y-2 text-gray-700">
               <p><strong>Method:</strong> {paymentMethod === 'creditCard' ? 'Credit/Debit Card' : paymentMethod === 'interac' ? 'Interac e-Transfer' : paymentMethod === 'applePay' ? 'Apple Pay' : 'Google Pay'}</p>
               {paymentMethod === 'creditCard' && (
@@ -129,7 +141,7 @@ const ReviewOrderPage = () => {
             </CardContent>
           </Card>
 
-          <CardFooter className="mt-6">
+          <CardFooter className="mt-3">
             <Button
               onClick={handleConfirmOrder}
               className="w-full bg-green-600 hover:bg-green-700 text-white text-lg px-8 py-3 rounded-md"
