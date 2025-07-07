@@ -4,7 +4,7 @@ export const productsData = [
   {
     id: 'choc001',
     name: 'Milk Chocolate Bunny',
-    imageUrl: '/src/assets/bunny.jpeg',
+    imageUrl: '/src/images/bunny.jpeg',
     price: 12.50,
     animalType: 'Farm Animals',
     animalSubType: 'Bunnies',
@@ -20,7 +20,7 @@ export const productsData = [
   {
     id: 'choc002',
     name: 'Dark Chocolate Lion (70%)',
-    imageUrl: '/src/assets/lion.jpeg',
+    imageUrl: '/src/images/lion.jpeg',
     price: 18.00,
     animalType: 'Wild Animals',
     animalSubType: 'Jungle Animals',
@@ -37,7 +37,7 @@ export const productsData = [
   {
     id: 'choc003',
     name: 'White Chocolate Dolphin',
-    imageUrl: '/src/assets/dolphin.jpeg',
+    imageUrl: '/src/images/dolphin.jpeg',
     price: 15.75,
     animalType: 'Wild Animals',
     animalSubType: 'Ocean Animals',
@@ -53,7 +53,7 @@ export const productsData = [
   {
     id: 'choc004',
     name: 'Caramel Dragon',
-    imageUrl: '/src/assets/dragon.jpeg',
+    imageUrl: '/src/images/dragon.jpeg',
     price: 25.00,
     animalType: 'Mythical/Fantasy Animals',
     animalSubType: 'Dragons',
@@ -67,7 +67,7 @@ export const productsData = [
   {
     id: 'choc005',
     name: 'Milk Chocolate Piglet',
-    imageUrl: '/src/assets/piglet.jpeg',
+    imageUrl: '/src/images/piglet.jpeg',
     price: 9.99,
     animalType: 'Farm Animals',
     animalSubType: 'Pigs',
@@ -81,7 +81,7 @@ export const productsData = [
   {
     id: 'choc006',
     name: 'Dark Chocolate Owl (85%)',
-    imageUrl: '/src/assets/owl.jpeg',
+    imageUrl: '/src/images/owl.jpeg',
     price: 19.50,
     animalType: 'Wild Animals',
     animalSubType: 'Forest Animals',
@@ -96,7 +96,7 @@ export const productsData = [
   {
     id: 'choc007',
     name: 'White Chocolate Unicorn',
-    imageUrl: '/src/assets/unicorn.jpeg',
+    imageUrl: '/src/images/unicorn.jpeg',
     price: 22.00,
     animalType: 'Mythical/Fantasy Animals',
     animalSubType: 'Unicorns',
@@ -110,7 +110,7 @@ export const productsData = [
   {
     id: 'choc008',
     name: 'Milk Chocolate Dog (Labrador)',
-    imageUrl: '/src/assets/labrador.jpg',
+    imageUrl: '/src/images/labrador.jpg',
     price: 14.00,
     animalType: 'Pets',
     animalSubType: 'Dogs',
@@ -124,7 +124,7 @@ export const productsData = [
   {
     id: 'choc009',
     name: 'Dark Chocolate Elephant (60%)',
-    imageUrl: '/src/assets/elephant.jpg',
+    imageUrl: '/src/images/elephant.jpg',
     price: 17.00,
     animalType: 'Wild Animals',
     animalSubType: 'Jungle Animals',
@@ -139,7 +139,7 @@ export const productsData = [
   {
     id: 'choc010',
     name: 'Ruby Chocolate Butterfly',
-    imageUrl: '/src/assets/butterfly.jpg',
+    imageUrl: '/src/images/butterfly.jpg',
     price: 11.00,
     animalType: 'Insects/Bugs',
     animalSubType: 'Butterflies',
