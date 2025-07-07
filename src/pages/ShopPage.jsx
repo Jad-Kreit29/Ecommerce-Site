@@ -118,7 +118,7 @@ const ShopPage = () => {
       <div className="flex flex-col md:flex-row gap-8">
 
         {/* Filter Panel */}
-        <div className="md:w-1/4 bg-white p-6 rounded-lg shadow-md h-fit sticky top-24"> {/* Added h-fit and sticky for better filter panel display */}
+        <div className="md:w-1/4 bg-white p-6 rounded-lg shadow-md h-fit top-24"> {/* Added h-fit and sticky for better filter panel display */}
           <h2 className="text-2xl font-semibold text-orange-800 mb-6">Filter By</h2>
 
           {/* Search Bar */}
