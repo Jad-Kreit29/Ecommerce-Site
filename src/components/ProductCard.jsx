@@ -10,6 +10,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <Card className="relative flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+      
       {/* Sale Badge */}
       {product.isOnSale && (
         <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-md">
@@ -22,7 +23,7 @@ const ProductCard = ({ product }) => {
         <img
           src={product.imageUrl}
           alt={product.name}
-          className="w-full h-48 object-cover rounded-t-lg"
+          className="w-full h-full object-cover rounded-t-lg"
           onError={(e) => { e.target.onerror = null; e.target.src = `https://placehold.co/300x200/CCCCCC/333333?text=Image+Not+Found`; }}
         />
       </CardHeader>
@@ -51,7 +52,7 @@ const ProductCard = ({ product }) => {
         {/* Add to Cart Button */}
         <Button
           onClick={() => addToCart(product)}
-          className="w-full bg-orange-600 hover:bg-orange-700 text-white rounded-md transition-colors"
+          className="cursor-pointer w-full bg-orange-600 hover:bg-orange-700 text-white rounded-md transition-colors"
         >
           Add to Cart
         </Button>
