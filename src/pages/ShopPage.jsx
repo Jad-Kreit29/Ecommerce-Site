@@ -105,7 +105,7 @@ const ShopPage = () => {
     'Chocolate Type': 'chocolateType',
     'Dietary Needs': 'dietary',
     'Size': 'size',
-    'Sale Items': 'isOnSale' // Add 'Sale Items' as a filter category
+    'Sale Items': 'isOnSale'
   };
 
   return (
