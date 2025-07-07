@@ -112,7 +112,8 @@ const ShopPage = () => {
     <div className="container mx-auto p-4">
 
       <h1 className="text-4xl font-bold text-center text-orange-900 mb-4">Our Chocolate Animals</h1>
-      <p className='text-lg text-center mb-8'>Browse our collection of cute chocolate animals to match your personality!</p>
+      <p className='text-lg text-center mb-4'>Browse our collection of cute chocolate animals to match your personality!</p>
+      <p className='text-lg text-center mb-8 bg-red-50 p-4 rounded-lg'>Your favorites just got <span className='text-red-500 font-bold'>20% sweeter</span> — enjoy our limited-time <span className='text-red-500 font-bold'>SUMMER SALE</span> before it’s gone!</p>
 
       {/* Split columns between filter section and product listings */}
       <div className="flex flex-col md:flex-row gap-8">
