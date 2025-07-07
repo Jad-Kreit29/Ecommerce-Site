@@ -9,7 +9,7 @@ import ProductList from '../components/ProductList'
 const ShopPage = () => {
   const [products, setProducts] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState({});
-  const [searchTerm, setSearchTerm] = useState(''); // New state for search term
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     setProducts(productsData);
@@ -91,18 +91,20 @@ const ShopPage = () => {
     'Animal Sub-Type': 'animalSubType',
     'Chocolate Type': 'chocolateType',
     'Dietary Needs': 'dietary',
-    'Flavor Profile': 'flavor',
-    'Occasion': 'occasion',
-    'Size': 'size',
-    'Packaging': 'packaging',
+    'Size': 'size'
   };
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold text-center text-orange-900 mb-8">Our Chocolate Animals</h1>
+
+      <h1 className="text-4xl font-bold text-center text-orange-900 mb-4">Our Chocolate Animals</h1>
+      <p className='text-lg text-center mb-8'>Browse our collection of cute chocolate animals to match your personality!</p>
+      
+      {/* Split columns between filter section and product listings */}
       <div className="flex flex-col md:flex-row gap-8">
+
         {/* Filter Panel */}
-        <div className="md:w-1/4 bg-white p-6 rounded-lg shadow-md">
+        <div className="h-295 md:w-1/4 bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-semibold text-orange-800 mb-6">Filter By</h2>
 
           {/* Search Bar */}
@@ -128,6 +130,7 @@ const ShopPage = () => {
             </div>
           </div>
 
+          {/* Filter Logic */}
           {Object.keys(selectedFilters).length > 0 && (
             <div className="mb-6 pb-4 border-b border-dashed border-gray-200">
               <h3 className="text-lg font-medium text-amber-700 mb-3">Applied Filters</h3>
@@ -140,7 +143,7 @@ const ShopPage = () => {
                       onClick={() => handleFilterChange(category, value)}
                     >
                       {value}
-                      <X size={16} /> {/* X icon to remove filter */}
+                      <X size={16} />
                     </span>
                   ))
                 )}
@@ -155,18 +158,20 @@ const ShopPage = () => {
             </div>
           )}
 
+          {/* Displaying filter categories */}
           {Object.entries(filterCategories).map(([displayName, propertyName]) => (
             <div key={propertyName} className="mb-6 pb-4 border-b border-dashed border-gray-200 last:border-b-0">
               <h3 className="text-lg font-medium text-amber-700 mb-3">{displayName}</h3>
               <div className="flex flex-col gap-2">
                 {getUniqueOptions(propertyName).map(option => (
-                  <div key={option} className="flex items-center space-x-2"> {/* Wrapper for Checkbox and Label */}
+                  <div key={option} className="flex items-center space-x-2"> 
+                  
+                  {/* Wrapper for Checkbox and Label */}
                     <Checkbox
                       id={`${propertyName}-${option}`}
                       checked={selectedFilters[propertyName]?.includes(option) || false}
                       onCheckedChange={() => handleFilterChange(propertyName, option)}
                     />
-                    {/* Explicitly setting text-gray-800 to ensure visibility */}
                     <Label htmlFor={`${propertyName}-${option}`} className="text-gray-800">
                       {option}
                     </Label>
@@ -174,6 +179,7 @@ const ShopPage = () => {
                 ))}
               </div>
             </div>
+
           ))}
         </div>
 
@@ -182,6 +188,7 @@ const ShopPage = () => {
           <ProductList products={filteredProducts} />
         </div>
       </div>
+
     </div>
   );
 };

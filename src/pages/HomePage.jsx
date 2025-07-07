@@ -10,22 +10,27 @@ const HomePage = () => {
   };
 
   return (
+
+    // Main Container
     <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] bg-gradient-to-br from-orange-100 to-yellow-50 p-8 text-center rounded-lg shadow-xl m-4">
+
       <h1 className="text-6xl font-extrabold text-orange-900 mb-6 drop-shadow-lg animate-fade-in">
         Welcome to ChocoZoo!
       </h1>
+
       <p className="text-xl text-orange-800 mb-10 max-w-2xl leading-relaxed animate-slide-up">
         Discover our delightful collection of artisanal chocolates shaped like your favorite animals.
         Perfect for gifts, parties, or a sweet treat for yourself!
       </p>
+      
       <Button
         onClick={goToShop}
-        className="bg-amber-700 hover:bg-amber-800 text-white text-lg px-8 py-4 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 animate-bounce-in"
+        className="cursor-pointer bg-amber-700 hover:bg-amber-800 text-white text-xl px-8 py-6 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 transform animate-bounce-in"
       >
         Explore Our Chocolate Animals
       </Button>
 
-      {/* Basic CSS for animations - usually in index.css or global.css */}
+      {/* Page Animation */}
       <style>
         {`
         @keyframes fadeIn {
@@ -47,7 +52,9 @@ const HomePage = () => {
         .animate-bounce-in {animation: bounceIn 1s ease-out 1s forwards; animation-fill-mode: backwards;}
         `}
       </style>
+      
     </div>
+
   );
 };
 
